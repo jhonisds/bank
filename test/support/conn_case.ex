@@ -22,6 +22,7 @@ defmodule BankWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+      import Bank.TestHelpers
       import BankWeb.ConnCase
 
       alias BankWeb.Router.Helpers, as: Routes
