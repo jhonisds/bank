@@ -8,7 +8,6 @@ defmodule Bank.Repo.Migrations.Accounts do
       add :currency, :money_with_currency
 
       timestamps()
-
     end
 
     create unique_index(:accounts, [:account_owner])

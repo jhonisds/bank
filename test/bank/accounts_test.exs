@@ -16,7 +16,7 @@ defmodule Bank.AccountsTest do
       assert {:ok, %Account{id: _id} = account} = Accounts.create_account(valid_attrs)
       assert account.currency == Money.new(:BRL, 0)
       assert account.balance == "R$ 0"
-      assert [%Account{id: _ˆid}] = Accounts.list_accounts()
+      assert [%Account{id: _id}] = Accounts.list_accounts()
     end
 
     test "with invalid data returns error changeset",
@@ -29,7 +29,7 @@ defmodule Bank.AccountsTest do
       assert {:ok, %Account{id: _id}} = Accounts.create_account(valid_attrs)
       assert {:error, changeset} = Accounts.create_account(valid_attrs)
       assert %{account_owner: ["has already been taken"]} = errors_on(changeset)
-      assert [%Account{id: _ˆid}] = Accounts.list_accounts()
+      assert [%Account{id: _id}] = Accounts.list_accounts()
     end
   end
 
@@ -77,7 +77,7 @@ defmodule Bank.AccountsTest do
 
   describe "delete_account/1" do
     test "deletes the account" do
-      account = account_fixture
+      account = account_fixture()
       assert {:ok, %Account{}} = Accounts.delete_account(account.id)
       assert Accounts.list_accounts() == []
     end

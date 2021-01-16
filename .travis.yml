@@ -1,0 +1,19 @@
+language: elixir
+elixir:
+  - 1.11.2
+otp_release:
+  - 22.3.3
+
+addons:
+  postgres: "9.4"
+
+services:
+  - postgresql
+
+script:
+  - mix format --check-formatted --dry-run
+  - mix credo --strict
+  - mix coveralls.json
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
