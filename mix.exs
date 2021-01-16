@@ -40,7 +40,13 @@ defmodule Bank.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ex_money_sql, "~> 1.3"},
+      {:ex_doc, "~> 0.23.0"},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:mix_test_watch, "~> 1.0", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.13.4", only: :test},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
     ]
   end
 
