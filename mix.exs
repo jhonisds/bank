@@ -1,6 +1,8 @@
 defmodule Bank.MixProject do
   use Mix.Project
 
+  @github_url "https://github.com/jhonisds/bank.git"
+
   def project do
     [
       app: :bank,
@@ -10,7 +12,32 @@ defmodule Bank.MixProject do
       compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+
+      # Configures ExDocs
+      name: "Bank",
+      description: "Elixir project bank",
+      homepage_url: @github_url,
+      source_url: @github_url,
+      files: ~w(mix.exs lib LICENSE.md README.md CHANGELOG.md),
+      docs: [
+        main: "readme",
+        extras: ["README.md", "CHANGELOG.md"]
+      ],
+      package: [
+        maintainers: ["Jhoni Santos"],
+        licences: ["MIT"],
+        links: %{"GitHub" => @github_url}
+      ],
+      # Configures ExCoveralls
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.json": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
