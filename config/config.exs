@@ -26,6 +26,17 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ex_money,
+  api_module: Money.ExchangeRates.OpenExchangeRates,
+  # configure it via environment variable
+  # open_exchange_rates_app_id: {:system, "OPEN_EXCHANGE_RATES_APP_ID"}
+  open_exchange_rates_app_id: "cc5cb56eb3704b44a4c44c74b24b718a",
+  json_library: Jason,
+  default_currency: :BRL,
+  separator: ".",
+  delimiter: ",",
+  default_cldr_backend: Bank.Cldr
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
