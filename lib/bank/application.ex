@@ -7,6 +7,10 @@ defmodule Bank.Application do
 
   def start(_type, _args) do
     children = [
+      # Start the service which maintains the
+      # :ets table that holds the private use currencies
+      Cldr.Currency,
+
       # Start the Ecto repository
       Bank.Repo,
       # Start the Telemetry supervisor
@@ -14,11 +18,7 @@ defmodule Bank.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Bank.PubSub},
       # Start the Endpoint (http/https)
-      BankWeb.Endpoint,
-
-      # Start the service which maintains the
-      # :ets table that holds the private use currencies
-      Cldr.Currency
+      BankWeb.Endpoint
 
       # Start a worker by calling: Bank.Worker.start_link(arg)
       # {Bank.Worker, arg}
