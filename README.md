@@ -24,18 +24,18 @@ mix deps.get
 mix ecto.setup
 ```
 
-- Postgres
+- PostgresSql
 
-- tabela: `accounts`
+tabela: `accounts`
 
-  | Column        | Type                           |
-  | ------------- | ------------------------------ |
-  | id            | bigint                         |
-  | account_owner | character varying(255)         |
-  | balance       | character varying(255)         |
-  | currency      | money_with_currency            |
-  | insert_at     | timestamp(0) without time zone |
-  | update_at     | timestamp(0) without time zone |
+| Column        | Type                           |
+| ------------- | ------------------------------ |
+| id            | bigint                         |
+| account_owner | character varying(255)         |
+| balance       | character varying(255)         |
+| currency      | money_with_currency            |
+| insert_at     | timestamp(0) without time zone |
+| update_at     | timestamp(0) without time zone |
 
 ## Dependências
 
@@ -44,34 +44,34 @@ mix ecto.setup
 | [ecto_sql](https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.html) | persistência de dados                                                                                                        |
 | [ex_money_sql](https://hexdocs.pm/ex_money_sql/readme.html)    | implementa a estrutura de dados `%Money{}` em conformidade com a [ISO4217](https://www.iso.org/iso-4217-currency-codes.html) |
 
-## Execute transações
+## Execute as transações
 
 Abra o terminal e rode o shell interativo do Elixir com o comando `iex -S mix`:
 
-> `create_account/1` recebe um map com os parâmetros **account_owner** que é único e obrigatório
-> **currency** é opcional, se não informado utiliza o padrao **:BRL**.
+> `create_account/1` recebe um map com os parâmetros _account_owner_ que é único e obrigatório
+> _currency_ é opcional, se não informado utiliza o padrao _:BRL_.
 
 ```elixir
 Accounts.create_account %{account_owner: "Jhoni"}
 {:ok, %Account{}}
 ```
 
-> `deposit/3` recebe **conta** e **valor** para depósito.
-> **currency** é opcional, se não informado utiliza o padrao **:BRL**.
+> `deposit/3` recebe _conta_ e _valor_ para depósito.
+> _currency_ é opcional, se não informado utiliza o padrao _:BRL_.
 
 ```elixir
 Transactions.deposit 1, 200.99
 {:ok, "successfuly deposit transaction - current balance: R$ 200,99"}
 ```
 
-> `withdraw/2` recebe **conta** e **valor** para retirada.
+> `withdraw/2` recebe _conta_ e _valor_ para retirada.
 
 ```elixir
 Transactions.withdraw 1, 200.99
 {:ok, "successfuly withdraw transaction - current balance: R$ 00.00"}
 ```
 
-> `transfer/3` recebe **conta** para retirada, depósito e **valor**.
+> `transfer/3` recebe _conta_ para retirada, depósito e _valor_.
 
 ```elixir
 Transactions.trasfer 1, 2, 20
@@ -79,7 +79,7 @@ Transactions.trasfer 1, 2, 20
  "successfuly transfer R$ 20,00 to Notorious - current balance: R$ 1.112,99"}
 ```
 
-> `split/3` recebe **conta** para retirada, contas para depósito e valor.
+> `split/3` recebe _conta_ para retirada, contas para depósito e valor.
 > Permite transações entre mesma moeda.
 
 ```elixir
