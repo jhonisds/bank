@@ -7,6 +7,18 @@ defmodule Bank.Transactions do
   alias Bank.Accounts
   alias Ecto.Changeset
 
+  @doc """
+  Transaction `deposit`.
+
+  ## Examples
+
+      iex> {:ok, account} = Accounts.create_account(%{account_owner: "Tupac"})
+      iex> Transactions.deposit(account.id, 100)
+      {:ok, "successfuly deposit transaction - current balance: #{Money.new(100, :BRL)}"}
+
+      iex> Transactions.deposit(99, 100)
+      {:error, "account: 99 not found"}
+  """
   def deposit(account_id, amount, currency \\ :BRL) do
     amount
     |> is_valid_amount?(account_id, :deposit)
@@ -143,7 +155,7 @@ defmodule Bank.Transactions do
             {:ok, "successfuly #{opts} transaction - current balance: #{account.balance}"}
 
           {:error, changeset} ->
-            {:error, changeset.errors}
+            {:error, changeset}
         end
     end
   end

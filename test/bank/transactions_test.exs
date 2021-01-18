@@ -2,6 +2,7 @@ defmodule Bank.TransactionsTest do
   use Bank.DataCase, async: true
 
   alias Bank.{Accounts, Financial.Account, Transactions}
+  doctest Transactions
 
   @attrs %{account_owner: "Jhoni", currency: Money.new(:BRL, 0), balance: "R$ 0"}
   @attrs_has_balance %{
@@ -19,7 +20,6 @@ defmodule Bank.TransactionsTest do
     {:ok, %Account{id: _id} = account} = Accounts.create_account(@attrs)
 
     [
-      invalid_attrs: %{account_owner: nil, currency: nil, balance: nil},
       account: account
     ]
   end
@@ -81,6 +81,12 @@ defmodule Bank.TransactionsTest do
     test "returns error when accounts are equals", %{account: account} do
       message = "same account - choose another account to transfer"
       assert {:error, message} == Transactions.transfer(account.id, account.id, 100)
+    end
+
+    test "returns error when account is not found" do
+      assert {:ok, %Account{id: _id} = account} = Accounts.create_account(@attrs_has_balance)
+      message = "account: 99 not found"
+      assert {:error, message} == Transactions.transfer(account.id, 99, 100)
     end
   end
 

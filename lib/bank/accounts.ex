@@ -2,6 +2,7 @@ defmodule Bank.Accounts do
   @moduledoc """
   Context for Accounts.
   """
+
   alias Bank.{Financial.Account, Repo}
 
   @doc """
@@ -14,7 +15,6 @@ defmodule Bank.Accounts do
 
       iex> create_account(%{field: invalid_value})
       {:error, %Ecto.Changeset{}}
-
   """
   def create_account(attrs \\ %{}) do
     %Account{}
@@ -29,7 +29,6 @@ defmodule Bank.Accounts do
 
       iex> list_accounts()
       [%Account{}, ...]
-
   """
   def list_accounts, do: Repo.all(Account)
 

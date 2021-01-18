@@ -27,7 +27,6 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :ex_money,
-  exchange_rates_retrieve_every: :never,
   api_module: Money.ExchangeRates.OpenExchangeRates,
   # configure it via environment variable
   # open_exchange_rates_app_id: {:system, "OPEN_EXCHANGE_RATES_APP_ID"}
