@@ -10,5 +10,6 @@ defmodule Bank.Cldr do
   use Cldr,
     locales: ["pt", "en"],
     default_locale: "pt",
-    providers: [Cldr.Number, Money]
+    providers: [Cldr.Number, Money],
+    generate_docs: false
 end

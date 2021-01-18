@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Integration terminal
 - Add reports
+- Add Phoenix
 
 ## [0.0.1] - 11-01-2021
 

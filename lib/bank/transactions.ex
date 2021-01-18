@@ -25,12 +25,42 @@ defmodule Bank.Transactions do
     |> transaction(currency)
   end
 
+  @doc """
+  Transaction `withdraw`.
+
+  ## Examples
+
+      iex> {:ok, account} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> Transactions.withdraw(account.id, 100)
+      {:ok, "successfuly withdraw transaction - current balance: #{Money.new(400, :BRL)}"}
+
+      iex> {:ok, account} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> Transactions.withdraw(account.id, 1000)
+      {:error, "sorry, you don't have enought balance - current balance: #{Money.new(500, :BRL)}"}
+  """
   def withdraw(account_id, amount) do
     amount
     |> is_valid_amount?(account_id, :withdraw)
     |> transaction(:BRL)
   end
 
+  @doc """
+  Transaction `transfer`.
+
+  ## Examples
+
+      iex> {:ok, account1} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> {:ok, account2} = Accounts.create_account(%{account_owner: "Dre", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> Transactions.transfer(account1.id, account2.id, 200)
+      {:ok, "successfuly transfer #{Money.new(200, :BRL)} to Dre - current balance: #{
+    Money.new(300, :BRL)
+  }"}
+
+      iex> {:ok, account1} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> {:ok, account2} = Accounts.create_account(%{account_owner: "Dre", currency: Money.new(:USD, 500), balance: "U$ 500,00" })
+      iex> Transactions.transfer(account1.id, account2.id, 100)
+      {:error, "cannot transfer monies with different currencies"}
+  """
   def transfer(from_account, to_account, amount) do
     case from_account != to_account do
       true ->
@@ -43,6 +73,22 @@ defmodule Bank.Transactions do
     end
   end
 
+  @doc """
+  Transaction `split`.
+
+  ## Examples
+
+      iex> {:ok, account1} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> {:ok, account2} = Accounts.create_account(%{account_owner: "Dre", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> Transactions.split(account1.id, [account2.id], 200)
+      [{:ok, "successfuly transfer #{Money.new(200, :BRL)} to Dre - current balance: #{
+    Money.new(300, :BRL)
+  }"}]
+
+      iex> {:ok, account1} = Accounts.create_account(%{account_owner: "Tupac", currency: Money.new(:BRL, 500), balance: "R$ 500,00" })
+      iex> Transactions.transfer(account1.id, account1.id, 100)
+      {:error, "same account - choose another account to transfer"}
+  """
   def split(from_account, accounts, amount) do
     id = for x <- Accounts.list_accounts(), do: x.id
 
@@ -55,6 +101,17 @@ defmodule Bank.Transactions do
     Enum.map(elements, &transfer(from_account, &1, amount / Enum.count(elements)))
   end
 
+  @doc """
+  Transaction `exchange`.
+
+  ## Examples
+
+      iex> Transactions.exchange(:BRL, :USD, 100)
+      {:ok, "successfuly exchange: #{Money.new("18,9", :USD)}"}
+
+      iex> Transactions.exchange(:BRL, :ERROR, 100)
+      {Cldr.UnknownCurrencyError, "The currency :ERROR is invalid"}
+  """
   def exchange(from_currency, to_currency, amount) do
     value = cast(amount)
 
