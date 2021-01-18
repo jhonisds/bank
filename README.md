@@ -13,7 +13,7 @@ requisitos do [desafio técnico Stone](https://gist.github.com/Isabelarrodrigues
 - [Testes](#testes)
 - [Qualidade](#qualidade)
 - [Novas funcionalidades](#novas-funcionalidades)
-- [License](#license)
+- [Licença](#licença)
 - [Referências](#referências)
 
 ## Bank
@@ -184,7 +184,7 @@ Ferramentas para integração contínua e cobertura de testes. Além da inclusã
 
 - A estrutura do projeto está preparada para implementar uma aplicação web com [Phoenix](https://phoenixframework.org/).
 
-## License
+## Licença
 
 - Mit
 
