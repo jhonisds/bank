@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- Integration terminal
-- Add reports
 - Add Phoenix
+- Add reports
 
 ## [0.0.1] - 11-01-2021
 

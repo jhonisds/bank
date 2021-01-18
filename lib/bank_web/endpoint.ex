@@ -42,5 +42,5 @@ defmodule BankWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug BankWeb.Router
+  # plug BankWeb.Router
 end

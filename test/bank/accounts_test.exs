@@ -3,8 +3,6 @@ defmodule Bank.AccountsTest do
 
   alias Bank.{Accounts, Financial.Account}
 
-  # doctest Accounts
-
   setup do
     [
       valid_attrs: %{account_owner: "Jhoni", currency: Money.new(:BRL, 0), balance: "R$ 0"},

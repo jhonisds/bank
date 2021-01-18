@@ -107,7 +107,7 @@ defmodule Bank.Transactions do
   ## Examples
 
       iex> Transactions.exchange(:BRL, :USD, 100)
-      {:ok, "successfuly exchange: #{Money.new("18,9", :USD)}"}
+      {:ok, "successfuly exchange: #{Money.new("18,89", :USD)}"}
 
       iex> Transactions.exchange(:BRL, :ERROR, 100)
       {Cldr.UnknownCurrencyError, "The currency :ERROR is invalid"}

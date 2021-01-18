@@ -129,7 +129,7 @@ defmodule Bank.TransactionsTest do
 
   describe "exchange/3" do
     test "returns ok when exchange is completed" do
-      currency = Money.new("18,9", :USD)
+      currency = Money.new("18,89", :USD)
 
       message = "successfuly exchange: #{currency}"
       assert {:ok, message} == Transactions.exchange(:BRL, :USD, 100)
