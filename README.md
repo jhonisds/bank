@@ -3,7 +3,20 @@
 Projeto bank desenvolvido com a linguagem funcional `Elixir versão 1.11.2`. Tem como principal objetivo aplicar os
 requisitos do [desafio técnico Stone](https://gist.github.com/Isabelarrodrigues/873b8849e8b54f0968d77a4b2f111ec4).
 
-# Bank
+## Índice
+
+- [Bank](#bank)
+- [Ambiente de desenvolvimento](#ambiente-de-desenvolvimento)
+- [Dependências](#dependências)
+- [Execute as transações](#execute-as-transações)
+- [Documentação](#documentação)
+- [Testes](#testes)
+- [Qualidade](#qualidade)
+- [Novas funcionalidades](#novas-funcionalidades)
+- [License](#license)
+- [Referências](#referências)
+
+## Bank
 
 O projeto permite realizar operações financeiras como: depósitos, retiradas, transferências de valores, split de transações e conversão de moedas.
 Utiliza a biblioteca `ex_money` que implementa um conjunto de funções aritméticas em conformidade com o padrão [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). A API [open exchange rates](https://openexchangerates.or) é empregada para a conversão de moedas.
@@ -167,6 +180,14 @@ Ferramentas para integração contínua e cobertura de testes. Além da inclusã
 - [Travis CI](https://travis-ci.org/)
 - [Codecov](https://about.codecov.io/)
 
+## Novas funcionalidades
+
+- A estrutura do projeto está preparada para implementar uma aplicação web com [Phoenix](https://phoenixframework.org/).
+
+## License
+
+- Mit
+
 ## Referências
 
 ### Livros
@@ -183,11 +204,3 @@ Ferramentas para integração contínua e cobertura de testes. Além da inclusã
 - [O Guia de Estilo Elixir](https://github.com/gusaiani/elixir_style_guide/blob/master/README_ptBR.md)
 - [Open exchange rates](https://openexchangerates.org/)
 - [ex_money](https://hexdocs.pm/ex_money/readme.html)
-
-## License
-
-- Mit
-
-## Novas funcionalidades
-
-- A estrutura do projeto está preparada para implementar uma aplicação web com [Phoenix](https://phoenixframework.org/).
