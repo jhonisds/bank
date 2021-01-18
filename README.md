@@ -1,11 +1,11 @@
 [![Build Status](https://www.travis-ci.org/jhonisds/bank.svg?branch=main)](https://www.travis-ci.org/jhonisds/bank) [![codecov](https://codecov.io/gh/jhonisds/bank/branch/main/graph/badge.svg?token=O7T9IK4OW5)](https://codecov.io/gh/jhonisds/bank)
 
-Projeto bank desenvolvido com a linguagem funcional `Elixir`. Tem como principal objetivo aplicar os
+Projeto bank desenvolvido com a linguagem funcional `Elixir versão 1.11.2`. Tem como principal objetivo aplicar os
 requisitos do [desafio técnico Stone](https://gist.github.com/Isabelarrodrigues/873b8849e8b54f0968d77a4b2f111ec4).
 
 # Bank
 
-O projeto permite realizar operações financeiras como: depósitos, retiradas, tranferências de valores, split de transações e conversão de moedas.
+O projeto permite realizar operações financeiras como: depósitos, retiradas, transferências de valores, split de transações e conversão de moedas.
 Utiliza a biblioteca `ex_money` que implementa um conjunto de funções aritméticas em conformidade com o padrão [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). A API [open exchange rates](https://openexchangerates.or) é empregada para a conversão de moedas.
 
 ## Ambiente de desenvolvimento
@@ -18,7 +18,7 @@ Para execução do projeto é necessário instalar o `Elixir` e o banco de dados
 > Sua instalação pode ser feita conforme o [guia de instalação](https://elixir-lang.org/install.html) ou por meio do [asdf](https://asdf-vm.com/#/core-manage-asdf).
 
 > PostgreSQL para a persistência dos dados.
-> Guia de [instalacão](https://www.postgresql.org/download/), também pode ser obtido via asdf ou [docker](https://hub.docker.com/_/postgres).
+> Realize a iinstalação conforme o [guia de instalacão](https://www.postgresql.org/download/), ou se preferir via asdf ou [docker](https://hub.docker.com/_/postgres).
 > Segue abaixo estrutura da tabela accounts.
 
 tabela: `accounts`
@@ -78,7 +78,7 @@ com o comando `iex -S mix` e informe as operações abaixo:
 > currency é opcional, se não informado utiliza o padrao :BRL.
 
 ```elixir
-Accounts.create_account %{account_owner: "Jhoni"}
+Accounts.create_account %{account_owner: "Username"}
 {:ok, %Account{}}
 ```
 
@@ -86,7 +86,7 @@ Accounts.create_account %{account_owner: "Jhoni"}
 > currency é opcional, se não informado utiliza o padrao :BRL.
 
 ```elixir
-Transactions.deposit 1, 200.99
+Transactions.deposit 1, 999.99
 {:ok, "successfuly deposit transaction - current balance: R$ 200,99"}
 ```
 
@@ -100,7 +100,7 @@ Transactions.withdraw 1, 200.99
 > `transfer/3` recebe uma conta(id) para retirada, depósito e valor.
 
 ```elixir
-Transactions.transfer 1, 2, 20
+Transactions.transfer 2, 1, 20
 {:ok,
  "successfuly transfer R$ 20,00 to Notorious - current balance: R$ 1.112,99"}
 ```
@@ -120,13 +120,13 @@ Transactions.split 1, [1,2,3], 100
 > `exchange/3` recebe moedas para conversão e valor.
 
 ```elixir
-Transactions.exchange :BRL, :USD, 100.99
-{:ok, "successfuly exchange: US$ 19,08"}
+Transactions.exchange :BRL, :USD, 100
+{:ok, "successfuly exchange: US$ 18,87"}
 ```
 
 ## Documentação
 
-Documentação dos módulos e funções do projeto através do comando `mix docs`.
+Geração da documentação dos módulos e funções do projeto através do comando `mix docs`.
 
 ```sh
 mix docs
@@ -136,13 +136,28 @@ mix docs
 
 Comandos para execução dos testes:
 
+Executa os testes e doctests.
+
 ```sh
-mix test # executa todos os testes
-mix test test/bank/transactions_test.exs:94 # informe arquivo e linha para executar um teste específico
+mix test
+```
 
-mix test --cover # cobertura de testes
-mix coveralls.html # gera relatório de cobertura `cover/excoveralls.html`
+Executa um teste específico informando arquivo e linha.
 
+```sh
+mix test test/bank/transactions_test.exs:94
+```
+
+Exibe cobertura de teste detalhada.
+
+```sh
+mix test --cover
+```
+
+Gera relatório de cobertura de testes no diretório: `cover/excoveralls.html`.
+
+```sh
+mix coveralls.html
 ```
 
 ## Qualidade
