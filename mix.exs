@@ -7,7 +7,7 @@ defmodule Bank.MixProject do
     [
       app: :bank,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,

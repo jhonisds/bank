@@ -5,7 +5,7 @@ otp_release:
   - 22.3.3
 
 addons:
-  postgres: "9.4"
+  postgres: "12.2"
 
 services:
   - postgresql
